@@ -23,7 +23,7 @@ const InventarioSchema = Schema ({
         required: true,        
     },
     fechaCompra: {
-        type: Date,
+        type: String,
         required: true,
     },
     precio: {

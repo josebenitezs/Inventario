@@ -124,4 +124,18 @@ router.put('/:inventarioId', async function(req, res){
     }
 });
 
+router.get('/:inventarioId', async function(req, res ){
+    try {
+        const inventario = await Inventario.findById(req.params.inventarioId);
+        if(!inventario){
+            return res.status(404).send('Inventario no existe');
+        }
+        res.send(inventario);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Ocurrio un error al consultar inventario');
+        
+    }
+})
+
 module.exports = router;

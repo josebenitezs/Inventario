@@ -1,9 +1,16 @@
 const express = require('express')
 const{ getConnection } = require ('./db/db-connection-mongo');
+const cors = require('cors');
+require('dotenv').config();
+
+
 
 const app = express()
-const port = 3000;
+const host = '0.0.0.0';
+const port = process.env.PORT;
 
+//implementacion de cors, através del middleware
+app.use(cors());
 
 getConnection();
 
@@ -15,6 +22,6 @@ app.use('/marca', require ('./router/marca'));
 app.use('/tipo-equipo', require ('./router/tipoEquipo'));
 app.use('/inventario', require ('./router/inventario'));
 
-  app.listen(port, () =>{
+  app.listen(port, host, () =>{
     console.log(`Example app listening on port ${port}`)
   });
